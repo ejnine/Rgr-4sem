@@ -1,0 +1,198 @@
+body,
+html {
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #578df99e;
+    padding: 10px;
+}
+
+.menu__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu__link {
+    cursor: pointer;
+    margin: 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    letter-spacing: 1px;
+}
+
+.fonter{
+    font-family: 'Roboto', sans-serif;
+}
+
+.fonter2{
+    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 80px;
+    width: 100%;
+    min-height: 700px;
+}
+
+.infImage{
+    display: flex;
+    justify-content: center;
+    height: 200px;
+}
+
+.imgcont{
+    margin: 10px 0 0 0;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 290px;
+    background: #578df9d7;
+    display: flex;
+}
+
+.productCell{
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 300px;
+    margin: 20px;
+    height: 360px;
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+.productCell:hover{
+    outline: 2px rgb(0, 0, 0) solid;
+}
+
+.image img{
+
+    width: 290px;
+
+}
+
+.info{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: #578df9d7;
+    width: 290px;
+    height: 110px;
+
+
+}
+
+.name{
+    position: relative;
+    left: 20px;
+    top: 10px;
+    align-self: flex-start;
+}
+
+.price{
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+}
+
+.fav img{
+    width: 35px;
+    height: 35px;
+
+}
+
+.fav {
+    position: relative;
+    background: #ffffff;
+    border-radius: 0 0 5px 5px;
+    width: 35px;
+    right: 50px;
+    height: 35px;
+}
+
+.fav:active{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.basket{
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+    background: #ffffff;
+}
+
+.basket img{
+    width: 30px;
+    height: 30px;
+}
+
+.logo{
+    height: 100%;
+}
+
+
+body{
+    background: url('https://phonoteka.org/uploads/posts/2022-01/1643204483_75-phonoteka-org-p-sinii-fon-geometriya-81.jpg') 0 0/cover no-repeat;
+}
+
+.poisk{
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.find{
+    outline: none;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.findBut{
+    border-radius: 5px;
+    outline: none;
+    border: 0.3px black solid;
+}
+
+.findBut img{
+    height: 20px;
+}
+
+.profile img{
+    width: 50px;
+    height: 50px;
+}
+
+.profile{
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+}
+
