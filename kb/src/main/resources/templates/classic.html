@@ -14,7 +14,12 @@
 <header th:insert="blocks/header :: header"></header>
 
 <main>
-
+    <div th:each="el : $items" class="alert alert-info mt-2">
+        <h3 th:text="${el.name}"/>
+        <p th:text="${el.description}"/>
+        <a th:href="'/classic' + ${el.id}">Подробнее</a>
+        
+    </div>
 </main>
 
 <div th:insert="blocks/footer :: footer"></div>
