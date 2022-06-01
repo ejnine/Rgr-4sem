@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Тестовое создание статьи</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+    <link href="../static/style.css" th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+    <div class="container mt-5 mb-5">
+        <h3>Тестовое добавление item</h3>
+        <form action="/testadd" method="post">
+            <input type="text" name="name" placeholder="name"><br>
+            <textarea name="description" placeholder="description"></textarea><br>
+            <p><input type="radio" name="style" value="classic"> Классика<Br>
+                <input type="radio" name="style" value="detective"> Детективы<Br>
+                <input type="radio" name="style" value="fan"> Фантастика<Br>
+                <input type="radio" name="style" value="romance"> Романтика<Br>
+                <input type="radio" name="style" value="poesy"> Поэзия<Br>
+                <input type="radio" name="style" value="adventures"> Приключения <br>
+            </p>
+            <input type="number" name="price" placeholder="price" class="registerbox"><br>
+            <button type="submit" class="bttn">Test</button>
+        </form>
+    </div>
+</main>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>

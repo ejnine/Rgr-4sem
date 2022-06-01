@@ -26,4 +26,15 @@ public class Item {
     public void setStyle(String style) {this.style = style;}
     public int getPrice() {return price;}
     public void setPrice(int price) {this.price = price;}
+
+    public Item() {
+
+    }
+
+    public Item(String name, String description, String style, int price) {
+        this.name = name;
+        this.description = description;
+        this.style = style;
+        this.price = price;
+    }
 }

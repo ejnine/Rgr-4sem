@@ -14,12 +14,39 @@
 <header th:insert="blocks/header :: header"></header>
 
 <main>
-    <div th:each="el : $items" class="alert alert-info mt-2">
-        <h3 th:text="${el.name}"/>
-        <p th:text="${el.description}"/>
-        <a th:href="'/classic' + ${el.id}">Подробнее</a>
-        
+
+    <div class="items fonter2">
+        <div class="products">
+            <div class="productCell" th:each="el : ${items}">
+                <div class="infImage">
+                    <div class="imgcont">
+                        <div class="image">
+                            <img
+                                    src="https://clipart-best.com/img/book/book-clip-art-3.png"
+                                    alt="">
+                        </div>
+                        <div class="fav">
+                            <img src="https://img.icons8.com/material-outlined/240/000000/bookmark-ribbon--v1.png"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="name">
+                        <a  th:href="'/classic/' + ${el.id}">
+                            <span th:text="${el.name}"></span>
+                        </a>
+                    </div>
+                    <div class="price">
+                        <span th:text="${el.price}"></span>
+                        <div class="basket">
+                            <img src="https://img.icons8.com/fluency-systems-regular/64/000000/shopping-basket.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </main>
 
 <div th:insert="blocks/footer :: footer"></div>
