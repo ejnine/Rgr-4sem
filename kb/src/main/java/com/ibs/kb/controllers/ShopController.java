@@ -15,7 +15,7 @@ import java.util.*;
 @Controller
 public class ShopController {
 
-    private static final int MAX_ITEM_ON_PAGE = 100;
+    private static final int MAX_ITEM_ON_PAGE = 10;
 
     @Autowired
     private ItemRepository itemRepository;

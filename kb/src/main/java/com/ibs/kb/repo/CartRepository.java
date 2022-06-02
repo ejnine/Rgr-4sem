@@ -15,7 +15,7 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
     @Override
     Optional<Cart> findById(Long aLong);
 
-    @Query("select i.* from cart where i.id_buyer LIKE :idb")
+    @Query("select i.* from cart where i.id_buyer = :idb")
     List<Cart> findAllByIdBuyer(@Param("idb")Long idBuyer);
 
 }

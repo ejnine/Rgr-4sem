@@ -26,6 +26,18 @@ public class User implements Serializable {
     private String token;
     private String roles;
 
+    private int balance;
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+
+
     public Long getId() {
         return id;
     }
@@ -108,47 +120,34 @@ public class User implements Serializable {
         return "User [id=" + id + ", email=" + email + ", fname=" + firstName + ", lname=" + lastName + ", password=" + password + "]";
     }
 
-    public String getHighLevelRole() {
+//    public String getHighLevelRole() {
+//
+//        List<String> allRoles = new ArrayList<>();
+//
+//        for (Role role : this.getUserRoles()) {
+//            allRoles.add(role.toString());
+//        }
+//        if (allRoles.contains(Role.ADMIN.toString())) {
+//            return Role.ADMIN.toString();
+//        } else {
+//            return Role.USER.toString();
+//        }
+//    }
 
-        List<String> allRoles = new ArrayList<>();
+//    public List<String> getRolesList() {
+//        List<String> list = new ArrayList<>();
+//        this.getUserRoles().toArray();
+//        for (Role role : this.getUserRoles()) {
+//            list.add(role.toString());
+//        }
+//        return list;
+//    }
 
-        for (Role role : this.getUserRoles()) {
-            allRoles.add(role.toString());
-        }
-        if (allRoles.contains(Role.ADMIN.toString())) {
-            return Role.ADMIN.toString();
-        } else {
-            return Role.USER.toString();
-        }
-    }
-
-    public List<String> getRolesList() {
-        List<String> list = new ArrayList<>();
-        this.getUserRoles().toArray();
-        for (Role role : this.getUserRoles()) {
-            list.add(role.toString());
-        }
-        return list;
-    }
-
-    public void addRole(Role role) {
-        Set<Role> roleSet = this.getUserRoles();
-        roleSet.add(role);
-        this.roles = convertRoleSetToString(roleSet);
-    }
-
-    public void removeRole(Role role) {
-        Set<Role> roleSet = this.getUserRoles();
-        roleSet.remove(role);
-
-        this.roles = convertRoleSetToString(roleSet);
-    }
-
-    private String convertRoleSetToString(Set<Role> roleSet) {
-        List<String> roleArr = new ArrayList<>(roleSet.size());
-        roleSet.forEach(c -> roleArr.add(c.toString()));
-        return String.join(",", roleArr);
-    }
+//    private String convertRoleSetToString(Set<Role> roleSet) {
+//        List<String> roleArr = new ArrayList<>(roleSet.size());
+//        roleSet.forEach(c -> roleArr.add(c.toString()));
+//        return String.join(",", roleArr);
+//    }
 
     public String getFullName() {
         return this.firstName + " " + this.lastName;

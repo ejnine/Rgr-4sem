@@ -19,4 +19,5 @@ public interface UserService {
 	void update(@Valid UserForm userForm);
 	User findById(Long userId);
     User getUserFromPrincipal(Principal principal);
+
 }

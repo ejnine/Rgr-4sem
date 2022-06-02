@@ -17,8 +17,16 @@ public class UserForm {
 	@NotBlank
 	private String password;
 
+	@NotBlank
+	private int balance;
 
-	
+
+	public int getBalance() {
+		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -42,5 +50,13 @@ public class UserForm {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean pay(int price){
+		if (balance - price < 0){
+			return false;
+		}
+		balance -= price;
+		return true;
 	}
 }

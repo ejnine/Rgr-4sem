@@ -10,7 +10,4 @@ import java.util.List;
 public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("select i from Item i where i.style = :style")
     public List<Item> findByStyle(@Param("style")String style);
-
-//    @Query("select i from Item i where i.id = :id")
-//    public List<Item> findByIdList(@Param("id")Long id);
 }
