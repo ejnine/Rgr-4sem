@@ -1,6 +1,6 @@
 package com.ibs.kb.form;
 
-import com.ibs.kb.spring.UserService;
+import com.ibs.kb.spring.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

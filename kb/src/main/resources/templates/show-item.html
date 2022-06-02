@@ -12,8 +12,8 @@
 <body>
 
     <header th:insert="blocks/header :: header"></header>
-    <a type="button" class="button button5" th:href="@{'/' + ${stl} + '/' + ${page-1}}">Prev</a>
-    <a type="button" class="button button5" th:href="@{'/' + ${stl} + '/' + ${page+1}}">Next</a>
+    <a type="button" class="button button5" th:href="@{'/style/' + ${stl} + '/' + ${page-1}}">Prev</a>
+    <a type="button" class="button button5" th:href="@{'/style/' + ${stl} + '/' + ${page+1}}">Next</a>
     <main>
 
         <div class="items fonter2">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="info">
                         <div class="name">
-                            <a  th:href="'/open/' + ${el.id}">
+                            <a  th:href="'/style/open/' + ${el.id}">
                                 <span th:text="${el.name}"></span>
                             </a>
                         </div>

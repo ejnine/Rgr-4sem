@@ -15,18 +15,17 @@ import java.util.*;
 @Controller
 public class ShopController {
 
-    private static final int MAX_ITEM_ON_PAGE = 10;
+    private static final int MAX_ITEM_ON_PAGE = 100;
 
     @Autowired
     private ItemRepository itemRepository;
 
-    @GetMapping("/lk")
-    public String lkMain(Model model) {
-        return "lk";
-    }
-    @GetMapping("/classic/{page}")
-    public String classic(@PathVariable(value = "page") int page, Model model) {
-        List<Item> items = itemRepository.findByStyle("classic");
+    @GetMapping("/style/{stl}/{page}")
+    public String style_show(@PathVariable(value = "page") int page, @PathVariable(value = "stl") String stl, Model model) {
+        if (page < 0) {
+            page = 0;
+        }
+        List<Item> items = itemRepository.findByStyle(stl);
         ArrayList<Item> page_items = new ArrayList<>();
         for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
@@ -34,84 +33,8 @@ public class ShopController {
             }
         }
         model.addAttribute("item", page_items);
-        model.addAttribute("stltitle", "Классика");
-        model.addAttribute("stl", "classic");
-        model.addAttribute("page", page);
-        return "show-item";
-    }
-
-    @GetMapping("/detective/{page}")
-    public String detective(@PathVariable(value = "page") int page, Model model) {
-        List<Item> items = itemRepository.findByStyle("detective");
-        ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
-            if (items.get(i) != null){
-                page_items.add(items.get(i));
-            }
-        }
-        model.addAttribute("item", page_items);
-        model.addAttribute("stltitle", "Детектив");
-        model.addAttribute("stl", "detective");
-        model.addAttribute("page", page);
-        return "show-item";
-    }
-    @GetMapping("/fan/{page}")
-    public String fan(@PathVariable(value = "page") int page, Model model) {
-        List<Item> items = itemRepository.findByStyle("fan");
-        ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
-            if (items.get(i) != null){
-                page_items.add(items.get(i));
-            }
-        }
-        model.addAttribute("item", page_items);
-        model.addAttribute("stltitle", "Фантастика");
-        model.addAttribute("stl", "fan");
-        model.addAttribute("page", page);
-        return "show-item";
-    }
-    @GetMapping("/romance/{page}")
-    public String romance(@PathVariable(value = "page") int page, Model model) {
-        List<Item> items = itemRepository.findByStyle("romance");
-        ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
-            if (items.get(i) != null){
-                page_items.add(items.get(i));
-            }
-        }
-        model.addAttribute("item", page_items);
-        model.addAttribute("stltitle", "Романтика");
-        model.addAttribute("stl", "romance");
-        model.addAttribute("page", page);
-        return "show-item";
-    }
-    @GetMapping("/poesy/{page}")
-    public String poesy(@PathVariable(value = "page") int page, Model model) {
-        List<Item> items = itemRepository.findByStyle("poesy");
-        ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
-            if (items.get(i) != null){
-                page_items.add(items.get(i));
-            }
-        }
-        model.addAttribute("item", page_items);
-        model.addAttribute("stltitle", "Поэзия");
-        model.addAttribute("stl", "poesy");
-        model.addAttribute("page", page);
-        return "show-item";
-    }
-    @GetMapping("/adventures/{page}")
-    public String adventures(@PathVariable(value = "page") int page, Model model) {
-        List<Item> items = itemRepository.findByStyle("adventures");
-        ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
-            if (items.get(i) != null){
-                page_items.add(items.get(i));
-            }
-        }
-        model.addAttribute("item", page_items);
-        model.addAttribute("stltitle", "Приключения");
-        model.addAttribute("stl", "adventures");
+        model.addAttribute("stltitle", "По стилям");
+        model.addAttribute("stl", stl);
         model.addAttribute("page", page);
         return "show-item";
     }
@@ -127,7 +50,7 @@ public class ShopController {
         itemRepository.save(item);
         return "redirect:/";
     }
-    @GetMapping("/open/{id}")
+    @GetMapping("/style/open/{id}")
     public String itemOpen(@PathVariable(value = "id") long id, Model model) {
         Optional<Item> item = itemRepository.findById(id);
         ArrayList<Item> res = new ArrayList<>();

@@ -45,7 +45,7 @@ section {
     margin: 80px;
     width: 100%;
     min-height: 700px;
-    background: url('https://phonoteka.org/uploads/posts/2022-01/1643204483_75-phonoteka-org-p-sinii-fon-geometriya-81.jpg') 0 0/cover no-repeat;
+    /*background: url('https://phonoteka.org/uploads/posts/2022-01/1643204483_75-phonoteka-org-p-sinii-fon-geometriya-81.jpg') 0 0/cover no-repeat;*/
 }
 .infImage{
     display: flex;
@@ -198,6 +198,7 @@ h2 {
     padding: 10px;
     color: #000;
     border-bottom: 3px solid #578cf9;
+
 }
 p {
     color: #f0f8ff;

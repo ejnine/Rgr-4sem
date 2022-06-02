@@ -5,7 +5,7 @@ import javax.validation.Valid;
 import com.ibs.kb.form.UserForm;
 import com.ibs.kb.form.UserFormValidator;
 import com.ibs.kb.models.User;
-import com.ibs.kb.spring.UserService;
+import com.ibs.kb.spring.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

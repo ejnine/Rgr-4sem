@@ -15,36 +15,6 @@
 </header>
 
 <body>
-		<!--<form th:action="@{/registration}" th:method="post" th:object="${userForm}">
-			<div>
-
-				<label>       </label>
-				<span th:errors="*{email}"></span><br>
-				<label>Email: </label>
-				<input id="email" th:field="*{email}" name="email" type="email">
-			</div>
-			<div>
-				<label>       </label>
-				<label>First name: </label>
-				<input id="firstName" th:field="*{name}" name="firstName" type="text">
-			</div>
-			<div>
-				<label>       </label>
-				<label>Last Name: </label>
-				<input id="lastName" th:field="*{name}" name="lastName" type="text">
-			</div>
-			<div>
-				<label>       </label>
-				<span th:errors="*{password}" style="color: red;"></span><br>
-				<label>Password: </label>
-				<input id="password" th:field="*{password}" name="password" type="password">
-			</div>
-			<div>
-				<input type="submit" name="login-submit" id="login-submit"
-					   class="stdBtn" value="Sign up">
-			</div>
-		</form>-->
-	<!--<th:block>-->
 	<form th:action="@{/user/registration}" th:method="post" th:object="${userForm}">
 			<section>
 				<div class="register">
