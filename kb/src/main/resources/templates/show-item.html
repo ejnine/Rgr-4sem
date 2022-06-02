@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Классика</title>
+    <title th:text="${stltitle}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,40 +11,48 @@
 </head>
 <body>
 
-<header th:insert="blocks/header :: header"></header>
+    <header th:insert="blocks/header :: header"></header>
+    <a type="button" class="button button5" th:href="@{'/' + ${stl} + '/' + ${page-1}}">Prev</a>
+    <a type="button" class="button button5" th:href="@{'/' + ${stl} + '/' + ${page+1}}">Next</a>
+    <main>
 
-<main>
+        <div class="items fonter2">
+            <div class="products">
 
-    <div class="productCell"  th:each="el : ${item}">
-        <div class="infImage">
-            <div class="imgcont">
-                <div class="image">
-                    <img
-                            src="https://clipart-best.com/img/book/book-clip-art-3.png"
-                            alt="">
+                <div class="productCell" th:each="el : ${item}">
+                    <div class="infImage">
+                        <div class="imgcont">
+                            <div class="image">
+                                <img
+                                        src="https://clipart-best.com/img/book/book-clip-art-3.png"
+                                        alt="">
+                            </div>
+                            <div class="fav">
+                                <img src="https://img.icons8.com/material-outlined/240/000000/bookmark-ribbon--v1.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="name">
+                            <a  th:href="'/open/' + ${el.id}">
+                                <span th:text="${el.name}"></span>
+                            </a>
+                        </div>
+                        <div class="price">
+                            <span th:text="${el.price}"></span>
+                            <div class="basket">
+                                <img src="https://img.icons8.com/fluency-systems-regular/64/000000/shopping-basket.png"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="fav">
-                    <img src="https://img.icons8.com/material-outlined/240/000000/bookmark-ribbon--v1.png"/>
-                </div>
+
             </div>
         </div>
-        <div class="info">
-            <div class="name">
-                <a  th:href="/classic/">
-                    <span>Назад</span>
-                </a>
-            </div>
-            <div class="price">
-                <span th:text="${el.price}"></span>
-                <div class="basket">
-                    <img src="https://img.icons8.com/fluency-systems-regular/64/000000/shopping-basket.png"/>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+    </main>
 
-<div th:insert="blocks/footer :: footer"></div>
+    <div th:insert="blocks/footer :: footer"></div>
 
 </body>
+
 </html>
