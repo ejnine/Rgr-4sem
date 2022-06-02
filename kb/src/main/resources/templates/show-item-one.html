@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
-    <link href="../static/show-item-one.css" th:href="@{/show-item-one.css}" rel="stylesheet" />
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -22,10 +22,6 @@
                     <li th:text="'ID товара: ' + ${el.id}"></li>
                     <li th:text="'Cтиль: ' + ${el.style}"></li>
                     <li th:text="'Цена: ' + ${el.price}"></li>
-                    <!--<li>Год издания:</li>-->
-                    <!--<li>Кол-во страниц:</li>
-                    <li>Тип обложки:</li>
-                    <li>Вес, г:</li>-->
                 </ul>
                 <p th:text="${el.description}"></p>
             </div>

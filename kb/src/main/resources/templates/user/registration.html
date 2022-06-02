@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>User Login Page</title>
+	<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<header>
+	<nav class="menu">
+		<ul class="menu__list">
+			<a class="menu__link" href="/">главная страница</a>
+		</ul>
+	</nav>
+</header>
+
+<body>
+		<!--<form th:action="@{/registration}" th:method="post" th:object="${userForm}">
+			<div>
+
+				<label>       </label>
+				<span th:errors="*{email}"></span><br>
+				<label>Email: </label>
+				<input id="email" th:field="*{email}" name="email" type="email">
+			</div>
+			<div>
+				<label>       </label>
+				<label>First name: </label>
+				<input id="firstName" th:field="*{name}" name="firstName" type="text">
+			</div>
+			<div>
+				<label>       </label>
+				<label>Last Name: </label>
+				<input id="lastName" th:field="*{name}" name="lastName" type="text">
+			</div>
+			<div>
+				<label>       </label>
+				<span th:errors="*{password}" style="color: red;"></span><br>
+				<label>Password: </label>
+				<input id="password" th:field="*{password}" name="password" type="password">
+			</div>
+			<div>
+				<input type="submit" name="login-submit" id="login-submit"
+					   class="stdBtn" value="Sign up">
+			</div>
+		</form>-->
+	<!--<th:block>-->
+	<form th:action="@{/user/registration}" th:method="post" th:object="${userForm}">
+			<section>
+				<div class="register">
+					<header class="registertitle">
+						<figure class="registerlogo-img">
+							<img src="/img/k3.png" alt="" class="registerlogo-img">
+						</figure>
+						<h1>Книжный бульвар</h1>
+						<figure class="registerlogo-img">
+							<img src="/img/k3.png" alt="" class="registerlogo-img">
+						</figure>
+					</header>
+					<h2>Регистрация</h2>
+					<form action="" class="registercontainer">
+						<label class="register_label">First name: </label>
+						<span th:errors="*{firstName}"></span><br>
+						<input  id="firstName" th:field="*{firstName}" name="firstName"  type="text"
+								class="registerbox" placeholder="firstName">
+
+						<label class="register_label">Last name: </label>
+						<span th:errors="*{lastName}"></span><br>
+						<input  id="lastName" th:field="*{lastName}" name="lastName"  type="text"
+								class="registerbox" placeholder="lastName">
+
+						<label class="register_label">E-mail:</label>
+						<span th:errors="*{email}"></span><br>
+						<input  id="email" th:field="*{email}" name="email"  type="text"
+								class="registerbox" placeholder="email">
+
+						<label class="register_label">Password:</label>
+						<span th:errors="*{password}"></span><br>
+						<input  id="password" th:field="*{password}" name="password"  type="text"
+								class="registerbox" placeholder="password">
+
+						<div>
+							<input type="submit" name="login-submit" id="login-submit"
+								   class="stdBtn" value="Sign up">
+						</div>
+					</form>
+				</div>
+			</section>
+		</form>
+<!--	</th:block>-->
+</body>
+
+</html>

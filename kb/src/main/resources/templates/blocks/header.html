@@ -11,7 +11,11 @@
                 <a class="menu__link" th:href="@{'/poesy/' + ${0}}">поэзия</a>
                 <a class="menu__link" th:href="@{'/adventures/' + ${0}}">приключения</a>
                 <a class="menu__link" href="/testadd">test add</a>
+
             </ul>
         </nav>
+        <form id="logoutForm" action="#" th:action="@{/logout}" method="post">
+            <a class="menu__link" href="#" th:href="@{/logout}">Logout</a>
+         </form>
     </header>
 </div>

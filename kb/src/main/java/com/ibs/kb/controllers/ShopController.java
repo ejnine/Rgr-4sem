@@ -15,6 +15,8 @@ import java.util.*;
 @Controller
 public class ShopController {
 
+    private static final int MAX_ITEM_ON_PAGE = 10;
+
     @Autowired
     private ItemRepository itemRepository;
 
@@ -26,7 +28,7 @@ public class ShopController {
     public String classic(@PathVariable(value = "page") int page, Model model) {
         List<Item> items = itemRepository.findByStyle("classic");
         ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*10; i < items.size() && i < page*10 + 10; i++){
+        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
                 page_items.add(items.get(i));
             }
@@ -42,7 +44,7 @@ public class ShopController {
     public String detective(@PathVariable(value = "page") int page, Model model) {
         List<Item> items = itemRepository.findByStyle("detective");
         ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*10; i < items.size() && i < page*10 + 10; i++){
+        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
                 page_items.add(items.get(i));
             }
@@ -57,7 +59,7 @@ public class ShopController {
     public String fan(@PathVariable(value = "page") int page, Model model) {
         List<Item> items = itemRepository.findByStyle("fan");
         ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*10; i < items.size() && i < page*10 + 10; i++){
+        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
                 page_items.add(items.get(i));
             }
@@ -72,7 +74,7 @@ public class ShopController {
     public String romance(@PathVariable(value = "page") int page, Model model) {
         List<Item> items = itemRepository.findByStyle("romance");
         ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*10; i < items.size() && i < page*10 + 10; i++){
+        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
                 page_items.add(items.get(i));
             }
@@ -87,7 +89,7 @@ public class ShopController {
     public String poesy(@PathVariable(value = "page") int page, Model model) {
         List<Item> items = itemRepository.findByStyle("poesy");
         ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*10; i < items.size() && i < page*10 + 10; i++){
+        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
                 page_items.add(items.get(i));
             }
@@ -102,7 +104,7 @@ public class ShopController {
     public String adventures(@PathVariable(value = "page") int page, Model model) {
         List<Item> items = itemRepository.findByStyle("adventures");
         ArrayList<Item> page_items = new ArrayList<>();
-        for (int i = page*10; i < items.size() && i < page*10 + 10; i++){
+        for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
             if (items.get(i) != null){
                 page_items.add(items.get(i));
             }

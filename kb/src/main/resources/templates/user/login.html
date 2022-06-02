@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Вход</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<header>
+	<nav class="menu">
+		<ul class="menu__list">
+			<a class="menu__link" href="/">главная страница</a>
+		</ul>
+	</nav>
+</header>
+
+<main>
+	<form action="/login" method="post">
+		<section>
+		<div class="register">
+			<header class="registertitle">
+				<h1>книжный бульвар</h1>
+			</header>
+			<h2>система входа</h2>
+			<form class="registercontainer">
+				<div class="form-group">
+					<label class="register_label" for="username"></label>
+					<input class="registerbox" type="text" id="username" name="username" autofocus="autofocus" placeholder="E-mail">
+				</div>
+				<div class="form-group">
+					<label class="register_label" for="password"></label>
+					<input type="password" id="password" name="password" placeholder="Password" class="registerbox">
+				</div>
+				<div>
+					<label for="remember-me" th:text="Remember-me"></label>
+					<input type="checkbox" id="remember-me" name="remember-me">
+				</div>
+				<div class="form-group">
+					<input type="submit" name="login-submit" id="login-submit" class="register__button" value="Log In">
+				</div>
+				<div class="form-group">
+					<a type="button" class="register__button" th:href="@{/user/registration}">Registration</a>
+				</div>
+			</form>
+		</div>
+		</section>
+	</form>
+</main>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>
