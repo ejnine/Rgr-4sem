@@ -3,7 +3,8 @@
 
 <head>
 	<title>User Login Page</title>
-	<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	<link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet" />
+	<link href="../static/css/registration.css" th:href="@{/css/registration.css}" rel="stylesheet" />
 </head>
 
 <header>
@@ -15,49 +16,46 @@
 </header>
 
 <body>
-	<form th:action="@{/user/registration}" th:method="post" th:object="${userForm}">
-			<section>
-				<div class="register">
-					<header class="registertitle">
-						<figure class="registerlogo-img">
-							<img src="/img/k3.png" alt="" class="registerlogo-img">
-						</figure>
-						<h1>Книжный бульвар</h1>
-						<figure class="registerlogo-img">
-							<img src="/img/k3.png" alt="" class="registerlogo-img">
-						</figure>
-					</header>
-					<h2>Регистрация</h2>
-					<form action="" class="registercontainer">
-						<label class="register_label">First name: </label>
-						<span th:errors="*{firstName}"></span><br>
-						<input  id="firstName" th:field="*{firstName}" name="firstName"  type="text"
-								class="registerbox" placeholder="firstName">
+<form th:action="@{/user/registration}" th:method="post" th:object="${userForm}" class="registercontainer">
+	<section>
+		<div class="register">
+			<header class="registertitle">
+				<figure class="registerlogo-img">
+					<img src="/img/k3.png" alt="" class="registerlogo-img">
+				</figure>
+				<h1>Книжный бульвар</h1>
+				<figure class="registerlogo-img">
+					<img src="/img/k3.png" alt="" class="registerlogo-img">
+				</figure>
+			</header>
+			<h2>Регистрация</h2>
+			<label class="register_label">First name: </label>
+			<span th:errors="*{firstName}"></span><br>
+			<input  id="firstName" th:field="*{firstName}" name="firstName"  type="text"
+					class="registerbox" placeholder="firstName">
 
-						<label class="register_label">Last name: </label>
-						<span th:errors="*{lastName}"></span><br>
-						<input  id="lastName" th:field="*{lastName}" name="lastName"  type="text"
-								class="registerbox" placeholder="lastName">
+			<label class="register_label">Last name: </label>
+			<span th:errors="*{lastName}"></span><br>
+			<input  id="lastName" th:field="*{lastName}" name="lastName"  type="text"
+					class="registerbox" placeholder="lastName">
 
-						<label class="register_label">E-mail:</label>
-						<span th:errors="*{email}"></span><br>
-						<input  id="email" th:field="*{email}" name="email"  type="text"
-								class="registerbox" placeholder="email">
+			<label class="register_label">E-mail:</label>
+			<span th:errors="*{email}"></span><br>
+			<input  id="email" th:field="*{email}" name="email"  type="text"
+					class="registerbox" placeholder="email">
 
-						<label class="register_label">Password:</label>
-						<span th:errors="*{password}"></span><br>
-						<input  id="password" th:field="*{password}" name="password"  type="text"
-								class="registerbox" placeholder="password">
+			<label class="register_label">Password:</label>
+			<span th:errors="*{password}"></span><br>
+			<input  id="password" th:field="*{password}" name="password"  type="text"
+					class="registerbox" placeholder="password">
 
-						<div>
-							<input type="submit" name="login-submit" id="login-submit"
-								   class="stdBtn" value="Sign up">
-						</div>
-					</form>
-				</div>
-			</section>
-		</form>
-<!--	</th:block>-->
+			<div class="stdBtn">
+				<input class="registerbutton" type="submit" name="login-submit" id="login-submit"
+					   value="Sign up">
+			</div>
+		</div>
+	</section>
+</form>
 </body>
 
 </html>

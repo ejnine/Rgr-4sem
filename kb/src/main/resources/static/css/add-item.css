@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    text-align: center;
+}
+
+
+.registerbox{
+width: 250px;
+height: 10px;
+border: none;
+border-radius: 5px;
+padding: 10px;
+}
+
+input{
+margin: 12px;
+}
+
+textarea{
+width: 400px;
+height:150px;
+border-radius: 5px;
+padding: 10px;
+border:none;
+}
+
+.button5{
+    width: 130px;
+    height: 35px;
+    margin: 10px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 2px 2px 5px #000000d1;
+    background-color: #b9b9b9;
+}
+
+.button5:hover{
+    cursor: pointer;
+    opacity: .90;
+    font-weight: bold;
+    transform: scale(0.9);
+    background: #696969;
+    transition: 0.1s;
+}

@@ -6,7 +6,8 @@
 	<meta charset="UTF-8">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	<link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet" />
+	<link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -18,15 +19,14 @@
 	</nav>
 </header>
 
-<main>
-	<form action="/login" method="post">
+<main class="registercontainer">
+	<form action="/login" method="post" class="registercontainer">
 		<section>
-		<div class="register">
-			<header class="registertitle">
-				<h1>Книжный бульвар</h1>
-			</header>
-			<h2>Система входа</h2>
-			<form class="registercontainer">
+			<div class="register">
+				<header class="registertitle">
+					<h1>Книжный бульвар</h1>
+				</header>
+				<h2>Система входа</h2>
 				<div class="form-group">
 					<label class="register_label" for="username"></label>
 					<input class="registerbox" type="text" id="username" name="username" autofocus="autofocus" placeholder="E-mail">
@@ -35,7 +35,7 @@
 					<label class="register_label" for="password"></label>
 					<input type="password" id="password" name="password" placeholder="Password" class="registerbox">
 				</div>
-				<div>
+				<div class="remember">
 					<label for="remember-me" th:text="Remember-me"></label>
 					<input type="checkbox" id="remember-me" name="remember-me">
 				</div>
@@ -45,13 +45,12 @@
 				<div class="form-group">
 					<a type="button" class="register__button" th:href="@{/user/registration}">Registration</a>
 				</div>
-			</form>
-		</div>
+			</div>
 		</section>
 	</form>
 </main>
 
-<div th:insert="blocks/footer :: footer"></div>
+
 
 </body>
 </html>

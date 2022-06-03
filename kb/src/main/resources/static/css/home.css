@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    height: 100%;
+    background: url('https://phonoteka.org/uploads/posts/2022-01/1643204483_75-phonoteka-org-p-sinii-fon-geometriya-81.jpg') 0 0/cover no-repeat;
+    text-transform: uppercase;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #578df99e;
+    padding: 10px;
+}
+
+.menu__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu__link {
+    cursor: pointer;
+    margin: 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    letter-spacing: 1px;
+}
+main{
+   width: 100%;
+   }
+
+.logout{
+margin: 5px;
+display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -9,17 +9,17 @@ import com.ibs.kb.models.User;
 import com.ibs.kb.repo.CartRepository;
 import com.ibs.kb.repo.ItemRepository;
 import com.ibs.kb.repo.UserRepository;
+import com.ibs.kb.spring.mail.MailSenderService;
 import com.ibs.kb.spring.user.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,15 @@ import java.util.Optional;
 
 @Controller
 public class CartController {
+
+    private int commissionFix = 100;
+
+    @Autowired
+    private MailSenderService mailSender;
+    private static String EMAIL_SUB_BUY = "Покупка в Книжном бульваре";
+    private static String EMAIL_BODY_BUY = "Была совершена покупка :\n";
+    private static String EMAIL_SUB_SELL = "Продажа в Книжном бульваре";
+    private static String EMAIL_BODY_SELL = "Была совершена продажа :\n";
 
     @Autowired
     private UserRepository userRepository;
@@ -60,12 +69,13 @@ public class CartController {
     }
 
     @PostMapping("/cartNewStatus")
-    public String cartNewStatus(@RequestParam int id_item, @RequestParam int id_buyer, @RequestParam String status,
+    public String cartNewStatus(@RequestParam int id_item, @RequestParam String status,
                                 @RequestParam Long id, Model model, HttpServletRequest request) {
+        int id_buyer = userService.getUserFromPrincipal(request.getUserPrincipal()).getId().intValue();
         User user = userService.findById((long)id_buyer);
-        id_buyer = userService.getUserFromPrincipal(request.getUserPrincipal()).getId().intValue();
-        cartRepository.deleteById(id);
+        cartRepository.deleteById(id);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         int itemPrice = itemRepository.findById((long) id_item).get().getPrice();
+        Long idSeller = itemRepository.findById((long) id_item).get().getIdSeller();
         if (status.equals("WISH")){
             status = "CART";
         } else {
@@ -74,6 +84,15 @@ public class CartController {
                     status = "WISH";
                 } else {
                     user.setBalance(user.getBalance() - itemPrice);
+                    mailSender.sendEmail(user.getEmail(), EMAIL_SUB_BUY,
+                            EMAIL_BODY_BUY + itemRepository.findById((long) id_item).get().toString() +
+                            "Ваш баланс сейчас: " + user.getBalance());
+                    User userSeller = userService.findById(idSeller);
+                    userSeller.setBalance(userSeller.getBalance() + (itemPrice - commissionFix));
+                    mailSender.sendEmail(userSeller.getEmail(), EMAIL_SUB_SELL,
+                            EMAIL_BODY_SELL + itemRepository.findById((long) id_item).get().toString() +
+                                    "Ваш баланс сейчас: " + userSeller.getBalance());
+                    userRepository.save(userSeller);
                     status = "SOLD";
                 }
                 userRepository.save(user);
@@ -88,7 +107,6 @@ public class CartController {
         return "redirect:/lk";
     }
 
-    //userService.getUserFromPrincipal(request.getUserPrincipal()).getId().intValue() = id_buyer
     @GetMapping("/lk")
     public String lkMain(Model model, HttpServletRequest request) {
         Long idBuyer = userService.getUserFromPrincipal(request.getUserPrincipal()).getId();

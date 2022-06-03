@@ -2,6 +2,7 @@ package com.ibs.kb.form;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class UserForm {
 
@@ -15,9 +16,9 @@ public class UserForm {
 	private String lastName;
 	
 	@NotBlank
+	@Size(min = 1)
 	private String password;
 
-	@NotBlank
 	private int balance;
 
 

@@ -2,6 +2,8 @@ package com.ibs.kb.controllers;
 
 import com.ibs.kb.models.Item;
 import com.ibs.kb.repo.ItemRepository;
+import com.ibs.kb.repo.UserRepository;
+import com.ibs.kb.spring.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +12,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
 public class ShopController {
 
     private static final int MAX_ITEM_ON_PAGE = 10;
+    private int commissionFix = 100;
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/style/{stl}/{page}")
     public String style_show(@PathVariable(value = "page") int page, @PathVariable(value = "stl") String stl, Model model) {
@@ -45,8 +55,12 @@ public class ShopController {
     }
 
     @PostMapping("/testadd")
-    public String add_item_post(@RequestParam String name, @RequestParam String description, @RequestParam String style, @RequestParam int price, Model model) {
-        Item item = new Item(name, description, style, price);
+    public String add_item_post(@RequestParam String name, @RequestParam String description, @RequestParam String style, @RequestParam int price, Model model, HttpServletRequest request) {
+        Long id_buyer = userService.getUserFromPrincipal(request.getUserPrincipal()).getId();
+        if (price < commissionFix){
+            price = commissionFix;
+        }
+        Item item = new Item(name, description, style, price, id_buyer);
         itemRepository.save(item);
         return "redirect:/";
     }

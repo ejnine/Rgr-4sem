@@ -15,7 +15,14 @@ public class Item {
     private String description;
     private String style;
     private int price;
+    private Long idSeller;
 
+    public Long getIdSeller() {
+        return idSeller;
+    }
+    public void setIdSeller(Long idSeller) {
+        this.idSeller = idSeller;
+    }
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
     public Long getId() {return id;}
@@ -27,14 +34,23 @@ public class Item {
     public int getPrice() {return price;}
     public void setPrice(int price) {this.price = price;}
 
+    @Override
+    public String toString() {
+        String rtn = "Книга: " + name + "\n" +
+                    "Описание: " + description + "\n" +
+                    "Цена: " + price + " rub" + "\n";
+        return rtn;
+    }
+
     public Item() {
 
     }
 
-    public Item(String name, String description, String style, int price) {
+    public Item(String name, String description, String style, int price, Long idSeller) {
         this.name = name;
         this.description = description;
         this.style = style;
         this.price = price;
+        this.idSeller = idSeller;
     }
 }

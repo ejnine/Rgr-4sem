@@ -1,5 +1,7 @@
 <div th:fragment="footer">
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
-
+        <form class="logout" id="logoutForm" action="#" th:action="@{/logout}" method="post">
+            <a class="menu__link" href="#" th:href="@{/logout}">Logout</a>
+        </form>
     </footer>
 </div>

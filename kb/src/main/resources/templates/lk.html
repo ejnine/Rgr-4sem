@@ -6,14 +6,17 @@
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/lk.css" th:href="@{/css/lk.css}" rel="stylesheet" />
+    <link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet" />
 </head>
 <body>
 
 <header th:insert="blocks/header :: header"></header>
 
 <main>
-    <h2 th:text="${fullName}"></h2>
+    <h2 th:text="'Здравствуйте, ' + ${fullName} + ',   Ваш баланс: ' + ${balance}"></h2>
+    <a class="menu__link" href="/testadd">Добавить в продажу свою книгу</a>
+
     <table>
         <tr>
             <td>
@@ -28,7 +31,6 @@
                     <div th:if="${carts.status == 'WISH'}">
                         <form action="/cartNewStatus"  method="post">
                             <input th:value="${carts.idItem}" type="hidden" name="id_item">
-                            <input type="hidden" name="id_buyer" value="0">
                             <input type="hidden" name="status" th:value="${carts.status}">
                             <input type="hidden" name="id" th:value="${carts.id}">
                             <button style="buybtn" type="submit">
@@ -55,72 +57,7 @@
         </tr>
     </table>
 </main>
-
 <div th:insert="blocks/footer :: footer"></div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<h2 th:text="${fullName}"></h2>
-<th:block>
-    <h2 th:text="'Баланс : ' + ${balance}"></h2>
-</th:block>
-<table>
-    <tr>
-
-        <td>
-            <th:block th:each="items: ${items}">
-                <li th:text="'Название: ' + ${items.name}"></li>
-                <li th:text="'Цена: ' + ${items.price}"></li>
-            </th:block>
-        </td>
-        <td>
-            <th:block th:each="carts: ${carts}">
-                <li th:text="'Статус: ' + ${carts.status}"></li>
-                <div th:if="${carts.status == 'WISH'}">
-                    <form action="/cartNewStatus"  method="post">
-                        <input th:value="${carts.idItem}" type="hidden" name="id_item">
-                        <input type="hidden" name="id_buyer" value="0">
-                        <input type="hidden" name="status" th:value="${carts.status}">
-                        <input type="hidden" name="id" th:value="${carts.id}">
-                        <button style="buybtn" type="submit">
-                            <span>Add to cart</span>
-                        </button>
-                    </form>
-                </div>
-                <div th:if="${carts.status == 'CART'}">
-                    <form action="/cartNewStatus"  method="post">
-                        <input th:value="${carts.idItem}" type="hidden" name="id_item">
-                        <input type="hidden" name="id_buyer" value="0">
-                        <input type="hidden" name="status" th:value="${carts.status}">
-                        <input type="hidden" name="id" th:value="${carts.id}">
-                        <button style="buybtn" type="submit">
-                            <span>Buy</span>
-                        </button>
-                    </form>
-                </div>
-                <div th:if="${carts.status == 'SOLD'}">
-                    <li></li>
-                </div>
-            </th:block>
-        </td>
-    </tr>
-</table>-->

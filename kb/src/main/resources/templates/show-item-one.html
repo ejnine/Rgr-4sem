@@ -6,7 +6,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/show-item-one.css" th:href="@{/css/show-item-one.css}" rel="stylesheet" />
+    <link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -14,36 +15,38 @@
 
 <main th:each="el : ${item}">
 
-        <h2 th:text="${el.name}"></h2>
-        <section class="info">
-            <div>
-                <img src="http://sosnovkaobr.my1.ru/Ikonki_raznye/knigi.jpg" alt="">
-            </div>
-            <div class="data">
-                <ul class="datalist">
-                    <li th:text="'ID товара: ' + ${el.id}"></li>
-                    <li th:text="'Cтиль: ' + ${el.style}"></li>
-                    <li th:text="'Цена: ' + ${el.price}"></li>
-                </ul>
-                <p th:text="${el.description}"></p>
-            </div>
+    <h2 th:text="${el.name}"></h2>
+    <section class="info">
+        <div>
+            <img src="http://sosnovkaobr.my1.ru/Ikonki_raznye/knigi.jpg" alt="">
+        </div>
+        <div class="data">
+            <ul class="datalist">
+                <li th:text="'ID товара: ' + ${el.id}"></li>
+                <li th:text="'Cтиль: ' + ${el.style}"></li>
+                <li th:text="'Цена: ' + ${el.price}"></li>
+            </ul>
+            <p th:text="${el.description}"></p>
+        </div>
+        <div class="buy">
             <form action="/cartupdate"  method="post">
-            <input th:value="${el.id}" type="hidden" name="id_item">
-            <input type="hidden" name="id_buyer" value="0">
-            <input type="hidden" name="status" value="CART">
-            <button style="buybtn" type="submit">
-                <span>Buy</span>
-            </button>
+                <input th:value="${el.id}" type="hidden" name="id_item">
+                <input type="hidden" name="id_buyer" value="0">
+                <input type="hidden" name="status" value="CART">
+                <button class="buybtn" type="submit">
+                    <span>Buy</span>
+                </button>
             </form>
             <form action="/cartupdate"  method="post">
                 <input th:value="${el.id}" type="hidden" name="id_item">
                 <input type="hidden" name="id_buyer" value="0">
                 <input type="hidden" name="status" value="WISH">
-                <button style="buybtn" type="submit">
+                <button class="buybtn" type="submit">
                     <span>Wish</span>
                 </button>
             </form>
-        </section>
+        </div>
+    </section>
 
 </main>
 

@@ -9,13 +9,24 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CartRepository extends CrudRepository<Cart, Long> {
+
     @Override
     Iterable<Cart> findAll();
 
     @Override
     Optional<Cart> findById(Long aLong);
 
-    @Query("select i.* from cart where i.id_buyer = :idb")
+    @Query("select cart.* from cart where cart.id_buyer = :idb")
     List<Cart> findAllByIdBuyer(@Param("idb")Long idBuyer);
 
 }
+
+
+/*
+
+find -найти                 -           -   Имя переменной
+exist -существует или нет   -   BY      -   Email
+save - сохранить\обновить(User)///      -   Id
+delete - удалить            -           -   Name
+
+ */

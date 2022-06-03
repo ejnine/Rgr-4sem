@@ -6,17 +6,18 @@
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <link href="../static/css/add-item.css" th:href="@{/css/add-item.css}" rel="stylesheet" />
+    <link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet" />
 </head>
 <body>
 
 <header th:insert="blocks/header :: header"></header>
 
 <main>
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5 ">
         <h3>Тестовое добавление item</h3>
         <form action="/testadd" method="post">
-            <input type="text" name="name" placeholder="name"><br>
+            <input type="text" name="name" placeholder="name" class="registerbox"><br>
             <textarea name="description" placeholder="description"></textarea><br>
             <p><input type="radio" name="style" value="classic"> Классика<Br>
                 <input type="radio" name="style" value="detective"> Детективы<Br>
@@ -26,7 +27,7 @@
                 <input type="radio" name="style" value="adventures"> Приключения <br>
             </p>
             <input type="number" name="price" placeholder="price" class="registerbox"><br>
-            <button type="submit" class="bttn">Test</button>
+            <button type="submit" class="button5">Test</button>
         </form>
     </div>
 </main>
