@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Login Page</title>
+    <link href="../static/css/home.css" th:href="@{/css/home.css}" rel="stylesheet" />
+    <link href="../static/css/registration.css" th:href="@{/css/registration.css}" rel="stylesheet" />
+</head>
+
+<header>
+    <nav class="menu">
+        <ul class="menu__list">
+            <a class="menu__link" href="/">главная страница</a>
+        </ul>
+    </nav>
+</header>
+
+<body>
+<form th:action="@{/return-pw}" th:method="post" class="registercontainer">
+    <section>
+        <div class="register">
+            <header class="registertitle">
+                <figure class="registerlogo-img">
+                    <img src="/img/k3.png" alt="" class="registerlogo-img">
+                </figure>
+                <h1>Книжный бульвар</h1>
+                <figure class="registerlogo-img">
+                    <img src="/img/k3.png" alt="" class="registerlogo-img">
+                </figure>
+            </header>
+            <h2>Восстановление пароля</h2>
+            <label class="register_label">E-mail:</label>
+            <span th:errors="*{email}"></span><br>
+            <input  id="email" th:field="*{email}" name="email"  type="text"
+                    class="registerbox" placeholder="email">
+            <div class="stdBtn">
+                <input class="registerbutton" type="submit"
+                       value="Отправить">
+            </div>
+        </div>
+    </section>
+</form>
+</body>
+
+</html>

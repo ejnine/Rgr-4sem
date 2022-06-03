@@ -117,35 +117,6 @@ public class User implements Serializable {
         return "User [id=" + id + ", email=" + email + ", fname=" + firstName + ", lname=" + lastName + ", password=" + password + "]";
     }
 
-//    public String getHighLevelRole() {
-//
-//        List<String> allRoles = new ArrayList<>();
-//
-//        for (Role role : this.getUserRoles()) {
-//            allRoles.add(role.toString());
-//        }
-//        if (allRoles.contains(Role.ADMIN.toString())) {
-//            return Role.ADMIN.toString();
-//        } else {
-//            return Role.USER.toString();
-//        }
-//    }
-
-//    public List<String> getRolesList() {
-//        List<String> list = new ArrayList<>();
-//        this.getUserRoles().toArray();
-//        for (Role role : this.getUserRoles()) {
-//            list.add(role.toString());
-//        }
-//        return list;
-//    }
-
-//    private String convertRoleSetToString(Set<Role> roleSet) {
-//        List<String> roleArr = new ArrayList<>(roleSet.size());
-//        roleSet.forEach(c -> roleArr.add(c.toString()));
-//        return String.join(",", roleArr);
-//    }
-
     public String getFullName() {
         return this.firstName + " " + this.lastName;
     }

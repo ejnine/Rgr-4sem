@@ -1,26 +1,29 @@
 package com.ibs.kb.controllers;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.ibs.kb.form.UserForm;
 import com.ibs.kb.form.UserFormValidator;
+import com.ibs.kb.models.Item;
 import com.ibs.kb.models.User;
 import com.ibs.kb.spring.mail.MailSenderService;
 import com.ibs.kb.spring.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+import static com.ibs.kb.Const.*;
+
 @Controller
 public class UserController {
-
-    private String EMAIL_USERS_SUB = "Книжный бульвар - Регистрация";
-    private String EMAIL_USERS_BODY_0 = "Здравствуйте, ";
-    private String EMAIL_USERS_BODY_1 = ", спасибо, что зарегистрировались в нашем Книжном Бульваре!";
 
     @Autowired
     private MailSenderService mailSender;
@@ -72,6 +75,28 @@ public class UserController {
             userService.update(userForm);
         }
         return "redirect:/";
+    }
+    @GetMapping("/admin/users")
+    public String adminUsers(Model model, HttpServletRequest request) {
+        UserForm form = new UserForm();
+        User user = userService.findById(userService.getUserFromPrincipal(request.getUserPrincipal()).getId());
+        if (user.getRoles().equals("USER")){
+            return "redirect:/";
+        }
+        List<User> users = userService.getList();
+        model.addAttribute("users", users);
+        model.addAttribute("fullName", userService.getUserFromPrincipal(request.getUserPrincipal()).getFullName());
+        return "admin-users";
+    }
+    @GetMapping("/return-pw")
+    public String userReturnPassword(Model model) {
+        return "return-pw";
+    }
+    @PostMapping("/return-pw")
+    public String userReturnPasswordSubmit(@RequestParam String email) {
+        String pw = userService.findByEmail(email).get().getPassword();
+        mailSender.sendEmail(email, "PasswordReturn", "Yours password : " + pw);
+        return "/";
     }
 }
 

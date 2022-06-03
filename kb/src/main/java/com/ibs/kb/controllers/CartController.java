@@ -2,7 +2,7 @@ package com.ibs.kb.controllers;
 
 
 
-import com.ibs.kb.form.UserForm;
+import com.ibs.kb.Const;
 import com.ibs.kb.models.Cart;
 import com.ibs.kb.models.Item;
 import com.ibs.kb.models.User;
@@ -19,24 +19,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.html.Option;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import static com.ibs.kb.Const.*;
 
 
 @Controller
 public class CartController {
 
-    private int commissionFix = 100;
-
     @Autowired
     private MailSenderService mailSender;
-    private static String EMAIL_SUB_BUY = "Покупка в Книжном бульваре";
-    private static String EMAIL_BODY_BUY = "Была совершена покупка :\n";
-    private static String EMAIL_SUB_SELL = "Продажа в Книжном бульваре";
-    private static String EMAIL_BODY_SELL = "Была совершена продажа :\n";
 
     @Autowired
     private UserRepository userRepository;
@@ -125,5 +118,21 @@ public class CartController {
         model.addAttribute("fullName", userService.getUserFromPrincipal(request.getUserPrincipal()).getFullName());
         model.addAttribute("balance", userService.getUserFromPrincipal(request.getUserPrincipal()).getBalance());
         return "lk";
+    }
+
+    @GetMapping("/lk-my")
+    public String lkMy(Model model, HttpServletRequest request) {
+        Long id = userService.getUserFromPrincipal(request.getUserPrincipal()).getId();
+        List<Item> items = (List<Item>) itemRepository.findByIdSeller(id);
+        model.addAttribute("items", items);
+        model.addAttribute("fullName", userService.getUserFromPrincipal(request.getUserPrincipal()).getFullName());
+        model.addAttribute("balance", userService.getUserFromPrincipal(request.getUserPrincipal()).getBalance());
+        return "lk-my";
+    }
+
+    @PostMapping("/cartDelete")
+    public String cartDelete(@RequestParam Long id, Model model, HttpServletRequest request) {
+        cartRepository.deleteById(id);
+        return "redirect:/lk";
     }
 }

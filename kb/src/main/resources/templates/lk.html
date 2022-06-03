@@ -15,8 +15,7 @@
 
 <main>
     <h2 th:text="'Здравствуйте, ' + ${fullName} + ',   Ваш баланс: ' + ${balance}"></h2>
-    <a class="menu__link" href="/testadd">Добавить в продажу свою книгу</a>
-
+    <a class="menu__link" href="/lk-my">Ваши книги, выставленные на продажу</a>
     <table>
         <tr>
             <td>
@@ -36,6 +35,12 @@
                             <button style="buybtn" type="submit">
                                 <span>Add to cart</span>
                             </button>
+                            <form action="/cartDelete" method="post">
+                                <input type="hidden" name="id" th:value="${carts.id}">
+                                <button style="buybtn" type="submit">
+                                    <span>Delete</span>
+                                </button>
+                            </form>
                         </form>
                     </div>
                     <div th:if="${carts.status == 'CART'}">
@@ -48,9 +53,20 @@
                                 <span>Buy</span>
                             </button>
                         </form>
+                        <form action="/cartDelete" method="post">
+                            <input type="hidden" name="id" th:value="${carts.id}">
+                            <button style="buybtn" type="submit">
+                                <span>Delete</span>
+                            </button>
+                        </form>
                     </div>
                     <div th:if="${carts.status == 'SOLD'}">
-                        <li></li>
+                        <form action="/cartDelete" method="post">
+                            <input type="hidden" name="id" th:value="${carts.id}">
+                            <button style="buybtn" type="submit">
+                                <span>Delete</span>
+                            </button>
+                        </form>
                     </div>
                 </th:block>
             </td>

@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
+import static com.ibs.kb.Const.*;
+
 @Controller
 public class ShopController {
-
-    private static final int MAX_ITEM_ON_PAGE = 10;
-    private int commissionFix = 100;
 
     @Autowired
     private ItemRepository itemRepository;
