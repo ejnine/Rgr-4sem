@@ -30,15 +30,17 @@ public class ShopController {
     private UserService userService;
 
     @GetMapping("/style/{stl}/{page}")
-    public String style_show(@PathVariable(value = "page") int page, @PathVariable(value = "stl") String stl, Model model) {
+    public String style_show(@PathVariable(value = "page") int page, @PathVariable(value = "stl") String stl, Model model, HttpServletRequest request) {
         if (page < 0) {
             page = 0;
         }
         List<Item> items = itemRepository.findByStyle(stl);
         ArrayList<Item> page_items = new ArrayList<>();
         for (int i = page*MAX_ITEM_ON_PAGE; i < items.size() && i < page*MAX_ITEM_ON_PAGE + MAX_ITEM_ON_PAGE; i++){
-            if (items.get(i) != null){
-                page_items.add(items.get(i));
+            if (items.get(i) != null) {
+                if (!Objects.equals(items.get(i).getIdSeller(), userService.getUserFromPrincipal(request.getUserPrincipal()).getId())) {
+                    page_items.add(items.get(i));
+                }
             }
         }
         model.addAttribute("item", page_items);

@@ -15,18 +15,4 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
 
     @Override
     Optional<Cart> findById(Long aLong);
-
-    @Query("select cart.* from cart where cart.id_buyer = :idb")
-    List<Cart> findAllByIdBuyer(@Param("idb")Long idBuyer);
-
 }
-
-
-/*
-
-find -найти                 -           -   Имя переменной
-exist -существует или нет   -   BY      -   Email
-save - сохранить\обновить(User)///      -   Id
-delete - удалить            -           -   Name
-
- */

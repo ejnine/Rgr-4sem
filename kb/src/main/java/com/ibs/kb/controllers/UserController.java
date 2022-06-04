@@ -7,6 +7,7 @@ import com.ibs.kb.form.UserForm;
 import com.ibs.kb.form.UserFormValidator;
 import com.ibs.kb.models.Item;
 import com.ibs.kb.models.User;
+import com.ibs.kb.repo.UserRepository;
 import com.ibs.kb.spring.mail.MailSenderService;
 import com.ibs.kb.spring.user.UserService;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private final UserFormValidator validator;
@@ -80,13 +84,14 @@ public class UserController {
     public String adminUsers(Model model, HttpServletRequest request) {
         UserForm form = new UserForm();
         User user = userService.findById(userService.getUserFromPrincipal(request.getUserPrincipal()).getId());
-        if (user.getRoles().equals("USER")){
+        if (user.getRoles().equals("ADMIN,USER")){
+            List<User> users = userService.getList();
+            model.addAttribute("users", users);
+            model.addAttribute("fullName", userService.getUserFromPrincipal(request.getUserPrincipal()).getFullName());
+            return "admin-users";
+        } else {
             return "redirect:/";
         }
-        List<User> users = userService.getList();
-        model.addAttribute("users", users);
-        model.addAttribute("fullName", userService.getUserFromPrincipal(request.getUserPrincipal()).getFullName());
-        return "admin-users";
     }
     @GetMapping("/return-pw")
     public String userReturnPassword(Model model) {
@@ -94,9 +99,25 @@ public class UserController {
     }
     @PostMapping("/return-pw")
     public String userReturnPasswordSubmit(@RequestParam String email) {
+        if (!userService.findByEmail(email).isPresent()){
+            return "/return-pw";
+        }
         String pw = userService.findByEmail(email).get().getPassword();
         mailSender.sendEmail(email, "PasswordReturn", "Yours password : " + pw);
-        return "/";
+        return "redirect:/";
+    }
+    @PostMapping("/changeBalance")
+    public String userChangeBalance(@RequestParam String summ, @RequestParam Long id) {
+        int sum = Integer.valueOf(summ.replaceAll(
+                "[^0-9]", ""));
+        User user = userService.findById(id);
+        if (user.getBalance() + sum < 0){
+            return "redirect:/admin/users";
+        } else {
+            user.setBalance(user.getBalance() + sum);
+            userRepository.save(user);
+        }
+        return "redirect:/admin/users";
     }
 }
 

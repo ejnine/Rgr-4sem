@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.ibs.kb.Const.*;
 
@@ -108,7 +109,9 @@ public class CartController {
         List<Item> items = new ArrayList<>();
 
         for (int i = 0; i < cartsAll.size(); i++){
-            if (cartsAll.get(i).getIdBuyer() == idBuyer){
+            if (cartsAll.get(i).getIdBuyer() == idBuyer &&
+                    !Objects.equals(itemRepository.findById((long) cartsAll.get(i).getIdItem()).get().getIdSeller(), idBuyer))
+            {
                 carts.add(cartsAll.get(i));
                 items.add(itemRepository.findById((long) cartsAll.get(i).getIdItem()).get());
             }

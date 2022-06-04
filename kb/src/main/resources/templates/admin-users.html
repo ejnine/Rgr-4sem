@@ -18,16 +18,24 @@
     <table>
         <tr>
             <td>
-            <th:block th:each="user: ${users}">
-                <li th:text="'ID: ' + ${user.id}"></li>
-                <li th:text="'Имя: ' + ${user.firstName}"></li>
-                <li th:text="'Фамилия: ' + ${user.lastName}"></li>
-                <li th:text="'Активен: ' + ${user.enabled}"></li>
-                <li th:text="'Роли: ' + ${user.roles}"></li>
-                <li></li>
-                <li></li>
-            </th:block>
+                 <th:block th:each="user: ${users}">
+                     <form th:action="@{/changeBalance}" th:method="post" >
+                     <li th:text="'ID: ' + ${user.id}"></li>
+                     <li th:text="'Имя: ' + ${user.firstName}"></li>
+                     <li th:text="'Фамилия: ' + ${user.lastName}"></li>
+                     <li th:text="'Активен: ' + ${user.enabled}"></li>
+                     <li th:text="'Роли: ' + ${user.roles}"></li>
+                     <li th:text="'Баланс: ' + ${user.balance}"></li>
+                     <input type="hidden" name="id" th:value="${user.id}">
+                     <input type="number" name="summ" placeholder="Сколько добавить" class="registerbox">
+                     <button style="buybtn" type="submit">
+                       <span>Добавить</span>
+                     </button>
+                        <li></li>
+                        </form>
+                 </th:block>
             </td>
+
         </tr>
     </table>
 </main>
