@@ -11,7 +11,7 @@
 
 
 ### Как запустить данное приложение?
-##Необходимо скачать данное приложение(https://github.com/ejnine/Rgr-4sem.git);
+Необходимо скачать данное приложение(https://github.com/ejnine/Rgr-4sem.git);
 #Установить->Запустить OpenServer(Последняя стабильная версия)
 *Версия для MySql - min 8.0
 ##Cоздать схему под названием kb_database(OpenServer->Дополнительно->phpMyAdmin)
@@ -20,7 +20,7 @@
 *spring.datasource.username=(root - по умолчанию)
 *spring.datasource.password=(root - по умолчанию)
 
-## Приложение запускается через IDE "InteliIDEA", где необходима предустановленная JAVA (версия 17.* и выше),
+Приложение запускается через IDE "InteliIDEA", где необходима предустановленная JAVA (версия 17.* и выше),
 * так же com.fasterxml.jackson.core:jackson (версия 2.13.*)
 
 ### Готово. Приложение будет доступно на странице localhost:661
